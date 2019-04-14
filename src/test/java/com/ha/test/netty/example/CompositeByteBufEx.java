@@ -18,7 +18,7 @@ public class CompositeByteBufEx {
         ReferenceCountUtil.release("");
 
         SimpleChannelInboundHandler df;
-        df.write();
-        ChannelHandler
+//        df.write();
+//        ChannelHandler
     }
 }
