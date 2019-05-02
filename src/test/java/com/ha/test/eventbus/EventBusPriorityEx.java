@@ -28,13 +28,14 @@ public class EventBusPriorityEx {
     @Subscribe(priority = 2)
     public void event2(MessageEvent event){
         System.out.println("2 "+event.toString());
+        EventBus.getDefault().cancelEventDelivery(event);
     }
 
 //    @Subscribe
     @Subscribe(priority = 3)
     public void event3(MessageEvent event){
         System.out.println("3 "+event.toString());
-        EventBus.getDefault().cancelEventDelivery(event);
+//        EventBus.getDefault().cancelEventDelivery(event);
     }
 
     @Subscribe

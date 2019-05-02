@@ -8,10 +8,16 @@ import org.junit.Test;
 
 public class EventBusEx {
     @Test
-    public void startBus(){
+    public void startBus() throws Exception {
         EventBus.getDefault().register(this);
         EventBus.getDefault().post(new MessageEvent("Hello world"));
-        System.out.println("됐나?");
+        System.out.println("끝");
+        Thread.sleep(1000);
+    }
+
+    @Subscribe(threadMode = ThreadMode.ASYNC)
+    public void onMessageEvent_async(MessageEvent event){
+        System.out.println("async "+event.toString());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -20,23 +26,18 @@ public class EventBusEx {
     }
 
     //@Subscribe default threadMode = POSTING, 동기
-    @Subscribe(threadMode = ThreadMode.POSTING)
-    public void onMessageEvent_sync(MessageEvent event){
-        System.out.println(event.toString());
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
-    public void onMessageEvent_order(MessageEvent event){
-        System.out.println("order "+event.toString());
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
-    public void onMessageEvent_order1(MessageEvent event){
-        System.out.println("order1 "+event.toString());
-    }
-
-    @Subscribe(threadMode = ThreadMode.ASYNC)
-    public void onMessageEvent_async(MessageEvent event){
-        System.out.println("async "+event.toString());
-    }
+//    @Subscribe(threadMode = ThreadMode.POSTING)
+//    public void onMessageEvent_sync(MessageEvent event){
+//        System.out.println(event.toString());
+//    }
+//
+//    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
+//    public void onMessageEvent_order(MessageEvent event){
+//        System.out.println("order "+event.toString());
+//    }
+//
+//    @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
+//    public void onMessageEvent_order1(MessageEvent event){
+//        System.out.println("order1 "+event.toString());
+//    }
 }

@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 
 public class EventBusBuildEx {
     //default 가 newCacheThreadPool 로 되어있어서 고정으로 바꿔 넣자
-    private ExecutorService executorService = Executors.newFixedThreadPool(4);
+    private ExecutorService executorService = Executors.newFixedThreadPool(1);
 
     @Test
     public void start() throws Exception{
